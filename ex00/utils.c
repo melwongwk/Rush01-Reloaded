@@ -6,7 +6,7 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:04:27 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/23 16:33:50 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/23 19:24:52 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_strlen(char *s)
 {
 	int	count;
 
+	if (!s)
+		return (0);
 	count = 0;
 	while (s[count])
 		count++;
