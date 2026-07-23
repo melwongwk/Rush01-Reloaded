@@ -6,13 +6,13 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:01:04 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/23 09:47:21 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/23 16:34:32 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-static bool	check_format(char* str)
+static bool	check_format_and_len(char* str)
 {
 	int		i;
 	bool	correct;
@@ -29,21 +29,24 @@ static bool	check_format(char* str)
 		i++;
 		if (!str[i])
 			break ;
-		if (!ft_is_space(str[i]))
+		if (!ft_isspace(str[i]))
 		{
 			correct = false;
 			break ;
 		}
 		i++;
 	}
+	if (i != 31)
+		correct = false;
 	return (correct);
 }
 
 int	main(int ac, char **av)
 {
-	if (ac != 2 || check_format(av[1]) == false)
+	if (ac != 2 || check_format_and_len(av[1]) == false)
 	{
-		ft_putendl_fd("Error", STDERR_FILENO);
+		write(2, "Error\n", 6);
 		return (EXIT_FAILURE);
 	}
+	return (0);
 }
