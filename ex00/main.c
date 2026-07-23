@@ -6,11 +6,13 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:01:04 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/23 16:34:32 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/23 19:45:35 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rush01.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdbool.h>
 
 static bool	check_format_and_len(char* str)
 {
