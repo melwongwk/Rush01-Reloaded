@@ -6,31 +6,42 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:01:04 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/23 09:06:21 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/23 09:47:21 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-static bool	is_all_digits_and_space(char *str)
+static bool	check_format(char* str)
 {
 	int		i;
-	char	c;
+	bool	correct;
 
+	correct = true;
 	i = 0;
 	while (str[i])
 	{
-		c = str[i];
-		if (!ft_isdigit(c) && !ft_isspace(c))
-			return (false);
+		if (!ft_isdigit(str[i]))
+		{
+			correct = false;
+			break ;
+		}
+		i++;
+		if (!str[i])
+			break ;
+		if (!ft_is_space(str[i]))
+		{
+			correct = false;
+			break ;
+		}
 		i++;
 	}
-	return (true);
+	return (correct);
 }
 
 int	main(int ac, char **av)
 {
-	if (ac != 2 || is_all_digits_and_space(av[1]) == false)
+	if (ac != 2 || check_format(av[1]) == false)
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
 		return (EXIT_FAILURE);
