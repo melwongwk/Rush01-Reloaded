@@ -6,11 +6,11 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:04:27 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/23 19:44:37 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/24 09:42:43 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>>
+#include "rush01.h"
 
 bool	ft_isspace(char c)
 {
