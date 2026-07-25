@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 16:44:17 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/24 16:44:18 by melwong          ###   ########.fr       */
+/*   Created: 2026/07/24 16:44:39 by melwong           #+#    #+#             */
+/*   Updated: 2026/07/24 16:44:40 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-bool	ft_isspace(char c)
+void	print_grid(t_game *game)
 {
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (true);
-	return (false);
+	int		row;
+	int		col;
+	char	buf[2];
+
+	row = 0;
+	while (row < GRID_SIZE)
+	{
+		col = 0;
+		while (col < GRID_SIZE)
+		{
+			buf[0] = '0' + game->grid[row][col];
+			if (col == GRID_SIZE - 1)
+				buf[1] = '\n';
+			else
+				buf[1] = ' ';
+			write(1, buf, 2);
+			col++;
+		}
+		row++;
+	}
 }
 
-bool	ft_isdigit(char c)
+void	print_error(void)
 {
-	if (c >= '0' && c <= '9')
-		return (true);
-	return (false);
-}
-
-int	ft_strlen(char *s)
-{
-	int	count;
-
-	if (!s)
-		return (0);
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
+	write(1, "Error\n", 6);
 }
