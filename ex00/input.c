@@ -6,7 +6,7 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 16:43:42 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/24 16:43:43 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/26 12:38:39 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	validate_clues(int *clues)
 	i = 0;
 	while (i < 16)
 	{
-		if (clues[i] < 1 || clues[i] > GRID_SIZE)
+		if (clues[i] < 1 || clues[i] > 4)
 			return (0);
 		i++;
 	}
@@ -62,7 +62,7 @@ static int	validate_clues(int *clues)
 
 int	parse_input(char *str, t_game *game)
 {
-	if (ft_strlen(str) != INPUT_LEN)
+	if (ft_strlen(str) != 31)
 		return (0);
 	if (!check_format(str))
 		return (0);

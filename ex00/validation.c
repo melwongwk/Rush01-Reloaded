@@ -5,59 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 16:44:47 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/24 16:44:48 by melwong          ###   ########.fr       */
+/*   Created: 2026/07/26 12:36:12 by melwong           #+#    #+#             */
+/*   Updated: 2026/07/27 09:17:03 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-static int	is_valid_set(int *values)
+static int	row_has_num(t_game *game, int row, int col, int num)
 {
-	int	seen[GRID_SIZE + 1];
 	int	i;
 
 	i = 0;
-	while (i <= GRID_SIZE)
-		seen[i++] = 0;
-	i = 0;
-	while (i < GRID_SIZE)
+	while (i < col)
 	{
-		if (values[i] < 1 || values[i] > GRID_SIZE || seen[values[i]])
-			return (0);
-		seen[values[i]] = 1;
+		if (game->grid[row][i] == num)
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
-int	check_row(t_game *game, int row)
+static int	col_has_num(t_game *game, int row, int col, int num)
 {
-	if (!is_valid_set(game->grid[row]))
-		return (0);
-	if (count_from_left(game, row) != game->clues[8 + row])
-		return (0);
-	if (count_from_right(game, row) != game->clues[12 + row])
-		return (0);
-	return (1);
-}
-
-int	check_col(t_game *game, int col)
-{
-	int	values[GRID_SIZE];
 	int	i;
 
 	i = 0;
-	while (i < GRID_SIZE)
+	while (i < row)
 	{
-		values[i] = game->grid[i][col];
+		if (game->grid[i][col] == num)
+			return (1);
 		i++;
 	}
-	if (!is_valid_set(values))
+	return (0);
+}
+
+int	can_place(t_game *game, int row, int col, int num)
+{
+	if (row_has_num(game, row, col, num))
 		return (0);
-	if (count_from_top(game, col) != game->clues[col])
-		return (0);
-	if (count_from_bottom(game, col) != game->clues[4 + col])
+	if (col_has_num(game, row, col, num))
 		return (0);
 	return (1);
 }

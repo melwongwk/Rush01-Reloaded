@@ -5,93 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 16:44:28 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/24 16:44:29 by melwong          ###   ########.fr       */
+/*   Created: 2026/07/26 12:36:45 by melwong           #+#    #+#             */
+/*   Updated: 2026/07/27 09:18:04 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-int	count_from_left(t_game *game, int row)
+int	check_row(t_game *game, int row)
 {
-	int	i;
-	int	max;
-	int	count;
-
-	max = 0;
-	count = 0;
-	i = 0;
-	while (i < GRID_SIZE)
-	{
-		if (game->grid[row][i] > max)
-		{
-			max = game->grid[row][i];
-			count++;
-		}
-		i++;
-	}
-	return (count);
+	if (count_from_left(game, row) != game->clues[8 + row])
+		return (0);
+	if (count_from_right(game, row) != game->clues[12 + row])
+		return (0);
+	return (1);
 }
 
-int	count_from_right(t_game *game, int row)
+int	check_col(t_game *game, int col)
 {
-	int	i;
-	int	max;
-	int	count;
-
-	max = 0;
-	count = 0;
-	i = GRID_SIZE - 1;
-	while (i >= 0)
-	{
-		if (game->grid[row][i] > max)
-		{
-			max = game->grid[row][i];
-			count++;
-		}
-		i--;
-	}
-	return (count);
-}
-
-int	count_from_top(t_game *game, int col)
-{
-	int	i;
-	int	max;
-	int	count;
-
-	max = 0;
-	count = 0;
-	i = 0;
-	while (i < GRID_SIZE)
-	{
-		if (game->grid[i][col] > max)
-		{
-			max = game->grid[i][col];
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-int	count_from_bottom(t_game *game, int col)
-{
-	int	i;
-	int	max;
-	int	count;
-
-	max = 0;
-	count = 0;
-	i = GRID_SIZE - 1;
-	while (i >= 0)
-	{
-		if (game->grid[i][col] > max)
-		{
-			max = game->grid[i][col];
-			count++;
-		}
-		i--;
-	}
-	return (count);
+	if (count_from_top(game, col) != game->clues[col])
+		return (0);
+	if (count_from_bottom(game, col) != game->clues[4 + col])
+		return (0);
+	return (1);
 }
