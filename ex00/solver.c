@@ -6,13 +6,13 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 09:35:57 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/26 09:39:12 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/27 09:31:58 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rush01.h"
 
-static void	solve_rec_helper(int *next_row, int *next_col, int row, int col)
+static void	get_next_cell(int row, int col, int *next_row, int *next_col)
 {
 	*next_row = row;
 	*next_col = col + 1;
@@ -23,6 +23,15 @@ static void	solve_rec_helper(int *next_row, int *next_col, int row, int col)
 	}
 }
 
+static int	placement_is_valid(t_game *game, int row, int col)
+{
+	if (col == 3 && !check_row(game, row))
+		return (0);
+	if (row == 3 && !check_col(game, col))
+		return (0);
+	return (1);
+}
+
 static int	solve_rec(t_game *game, int row, int col)
 {
 	int	num;
@@ -31,15 +40,14 @@ static int	solve_rec(t_game *game, int row, int col)
 
 	if (row == 4)
 		return (1);
-	solve_rec_helper(&next_row, &next_col, row, col);
+	get_next_cell(row, col, &next_row, &next_col);
 	num = 1;
 	while (num <= 4)
 	{
 		if (can_place(game, row, col, num))
 		{
 			game->grid[row][col] = num;
-			if ((col != 3 || check_row(game, row))
-				&& (row != 3 || check_col(game, col)))
+			if (placement_is_valid(game, row, col))
 			{
 				if (solve_rec(game, next_row, next_col))
 					return (1);
