@@ -11,21 +11,30 @@
 /* ************************************************************************** */
 
 #include "rush01.h"
+#include <stdbool.h>
 
-int	check_row(t_game *game, int row)
+bool	check_row(t_game *game, int row)
 {
-	if (count_from_left(game, row) != game->clues[8 + row])
-		return (0);
-	if (count_from_right(game, row) != game->clues[12 + row])
-		return (0);
-	return (1);
+	int	count;
+
+	count = count_from_left(game, row);
+	if (count != game->clues[8 + row])
+		return (false);
+	count = count_from_right(game, row);
+	if (count != game->clues[12 + row])
+		return (false);
+	return (true);
 }
 
-int	check_col(t_game *game, int col)
+bool	check_col(t_game *game, int col)
 {
-	if (count_from_top(game, col) != game->clues[col])
+	int	count;
+
+	count = count_from_top(game, col);
+	if (count != game->clues[col])
 		return (0);
-	if (count_from_bottom(game, col) != game->clues[4 + col])
+	count = count_from_bottom(game, col);
+	if (count != game->clues[4 + col])
 		return (0);
 	return (1);
 }

@@ -21,7 +21,6 @@ int	main(int ac, char **av)
 		print_error();
 		return (0);
 	}
-	game = (t_game){0};
 	if (!parse_input(av[1], &game))
 	{
 		print_error();

@@ -47,8 +47,8 @@ int		count_from_bottom(t_game *game, int col);
 
 /* clues.c */
 
-int		check_row(t_game *game, int row);
-int		check_col(t_game *game, int col);
+bool	check_row(t_game *game, int row);
+bool	check_col(t_game *game, int col);
 
 /* solver.c */
 
