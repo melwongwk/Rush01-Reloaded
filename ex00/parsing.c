@@ -6,48 +6,52 @@
 /*   By: meichan <meichan@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 17:01:43 by meichan           #+#    #+#             */
-/*   Updated: 2026/07/28 22:28:49 by meichan          ###   ########.fr       */
+/*   Updated: 2026/07/29 17:29:57 by meichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
-int	parse_input(char *str, int clues);
+int	parse_input(char *str, t_game *game);
+void	print_grid(t_game *game);
 void	print_error(void);
 
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		print_error();
-	return (0);
-}
-
-int	parse_input(char *str, int clues)
+int	parse_input(char *str, t_game *game)
 {
 	int	i;
 	int	j;
-	int	clues[16];
 
 	i = 0;
 	j = 0;
 	while (i <= 15 && j <= 31)
 	{
-		clues[i] = *str[j] - '0';
-		printf("Clues: %d ", clues);
+		game->clues[i] = str[j] - '0';
 		i++;
 		j += 2;
 	}
 	return (0);
 }
 
-/*
 void	print_grid(t_game *game)
 {
+	int	r;
+	int	c;
 
-	game->grid[][];
+	r = 0;
+	c = 0;
+	while (r <= 3)
+	{
+		while (c <= 3)
+		{
+			write (1, &game->grid[r][c], 1);
+			c++;
+		}
+		write (1, "\n", 1);
+		c = 0;
+		r++;
+	}
 }
-*/
+
 void	print_error(void)
 {
 	write (1, "Error\n", 6);
