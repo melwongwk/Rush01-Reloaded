@@ -1,53 +1,73 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meichan <meichan@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/25 17:01:43 by meichan           #+#    #+#             */
-/*   Updated: 2026/07/28 22:28:49 by meichan          ###   ########.fr       */
+/*   Created: 2026/07/29 14:15:47 by meichan           #+#    #+#             */
+/*   Updated: 2026/07/29 15:34:22 by meichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 
-int	parse_input(char *str, int clues);
-void	print_error(void);
+void	print_error();
+int	parse_input(char *str);
+void	print_grid(int grid[4][4]);
 
 int	main(int argc, char **argv)
 {
+	int	grid[4][4];
+
+	grid[4][4] = {1, 2, 3, 4}, {2, 3, 4, 1}, {3, 4, 1, 2}, {4, 1, 2, 3};
 	if (argc != 2)
 		print_error();
+	else
+		printf("Char clues: %s\n", argv[1]);
+	parse_input(argv[1]);
+	print_grid(grid[][4]);
 	return (0);
 }
 
-int	parse_input(char *str, int clues)
+int	parse_input(char *str)
 {
+	int	clues[16];
 	int	i;
 	int	j;
-	int	clues[16];
 
 	i = 0;
 	j = 0;
 	while (i <= 15 && j <= 31)
 	{
-		clues[i] = *str[j] - '0';
-		printf("Clues: %d ", clues);
+		clues[i] = str[j] - '0';
+		printf("%d ", clues[i]);
 		i++;
 		j += 2;
 	}
 	return (0);
 }
 
-/*
-void	print_grid(t_game *game)
+void	print_grid(int grid[][4])
 {
+	int	r;
+	int	c;
 
-	game->grid[][];
+	r = 0;
+	c = 0;
+	while (r <= 3)
+	{
+		while (c <= 3)
+		{
+			printf("%d ", grid[r][c]);
+			c++;
+		}
+		printf("\n");
+		r++;
+	}
 }
-*/
+
 void	print_error(void)
 {
 	write (1, "Error\n", 6);
