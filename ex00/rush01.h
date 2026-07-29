@@ -6,7 +6,7 @@
 /*   By: melwong <melwong@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:03:08 by melwong           #+#    #+#             */
-/*   Updated: 2026/07/29 08:55:40 by melwong          ###   ########.fr       */
+/*   Updated: 2026/07/29 10:22:36 by melwong          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ typedef struct s_game
 bool	ft_isspace(char c);
 bool	ft_isdigit(char c);
 int		ft_strlen(char *str);
+
+int		count_from_left(t_game *game, int row);
+int		count_from_right(t_game *game, int row);
+int		count_from_top(t_game *game, int col);
+int		count_from_bottom(t_game *game, int col);
+
+bool	check_col(t_game *game, int col);
+bool	check_row(t_game *game, int row);
 
 int		can_place(t_game *game, int row, int col, int num);
 
