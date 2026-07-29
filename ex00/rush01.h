@@ -27,6 +27,8 @@ bool	ft_isspace(char c);
 bool	ft_isdigit(char c);
 int		ft_strlen(char *str);
 
+bool	validate_clues(t_game *game);
+
 int		count_from_left(t_game *game, int row);
 int		count_from_right(t_game *game, int row);
 int		count_from_top(t_game *game, int col);

@@ -43,10 +43,23 @@ static bool	check_format_and_len(char *str)
 
 int	main(int ac, char **av)
 {
-	if (ac != 2 || check_format_and_len(av[1]) == false)
+	t_game	game;
+	if (ac != 2 || !check_format_and_len(av[1]))
 	{
-		write(1, "Error\n", 6);
+		print_error();
 		return (0);
 	}
+	parse_input(av[1], &game);
+	if (!validate_clues(&game))
+	{
+		print_error();
+		return (0);
+	}
+	if (!solve(&game))
+	{
+		print_error();
+		return (0);
+	}
+	print_grid(&game);
 	return (0);
 }
