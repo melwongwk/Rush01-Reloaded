@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "rush01.h"
 
-int	parse_input(char *str, t_game *game);
+void	parse_input(char *str, t_game *game);
 void	print_grid(t_game *game);
 void	print_error(void);
 
-int	parse_input(char *str, t_game *game)
+void	parse_input(char *str, t_game *game)
 {
 	int	i;
 	int	j;
@@ -28,20 +28,19 @@ int	parse_input(char *str, t_game *game)
 		game->clues[i] = str[j] - 48;
 		i++;
 		j += 2;
-	}
-	return (0);
+	};
 }
 
 void	print_grid(t_game *game)
 {
-	int	r;
-	int	c;
+	int		r;
+	int		c;
 	char	alp;
 
 	r = 0;
-	c = 0;
 	while (r <= 3)
 	{
+		c = 0;
 		while (c <= 3)
 		{
 			alp = game->grid[r][c] + 48;
@@ -51,7 +50,6 @@ void	print_grid(t_game *game)
 				write (1, " ", 1);
 		}
 		write (1, "\n", 1);
-		c = 0;
 		r++;
 	}
 }
