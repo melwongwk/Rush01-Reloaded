@@ -6,7 +6,7 @@
 /*   By: meichan <meichan@student.42kl.edu.my>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/29 14:15:47 by meichan           #+#    #+#             */
-/*   Updated: 2026/07/29 15:34:22 by meichan          ###   ########.fr       */
+/*   Updated: 2026/07/29 17:30:07 by meichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ void	print_grid(int grid[4][4]);
 
 int	main(int argc, char **argv)
 {
-	int	grid[4][4];
+	int	grid[4][4] = {{1, 2, 3, 4}, {2, 3, 4, 1}, {3, 4, 1, 2}, {4, 1, 2, 3}};
 
-	grid[4][4] = {1, 2, 3, 4}, {2, 3, 4, 1}, {3, 4, 1, 2}, {4, 1, 2, 3};
 	if (argc != 2)
 		print_error();
 	else
 		printf("Char clues: %s\n", argv[1]);
 	parse_input(argv[1]);
-	print_grid(grid[][4]);
+	print_grid(grid);
 	return (0);
 }
 
@@ -64,6 +63,7 @@ void	print_grid(int grid[][4])
 			c++;
 		}
 		printf("\n");
+		c = 0;
 		r++;
 	}
 }
