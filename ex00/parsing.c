@@ -12,10 +12,6 @@
 
 #include "rush01.h"
 
-void	parse_input(char *str, t_game *game);
-void	print_grid(t_game *game);
-void	print_error(void);
-
 void	parse_input(char *str, t_game *game)
 {
 	int	i;
@@ -28,7 +24,7 @@ void	parse_input(char *str, t_game *game)
 		game->clues[i] = str[j] - 48;
 		i++;
 		j += 2;
-	};
+	}
 }
 
 void	print_grid(t_game *game)
@@ -46,7 +42,7 @@ void	print_grid(t_game *game)
 			alp = game->grid[r][c] + 48;
 			write (1, &alp, 1);
 			c++;
-			if (c < 3)
+			if (c < 4)
 				write (1, " ", 1);
 		}
 		write (1, "\n", 1);

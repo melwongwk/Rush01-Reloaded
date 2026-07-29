@@ -44,6 +44,7 @@ static bool	check_format_and_len(char *str)
 int	main(int ac, char **av)
 {
 	t_game	game;
+
 	if (ac != 2 || !check_format_and_len(av[1]))
 	{
 		print_error();

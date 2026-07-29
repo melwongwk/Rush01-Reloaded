@@ -18,11 +18,12 @@ bool	validate_clues(t_game *game)
 	int	clue;
 
 	i = 0;
-	while (1 < 16)
+	while (i < 16)
 	{
 		clue = game->clues[i];
 		if (clue < 1 || clue > 4)
 			return (false);
+		i++;
 	}
 	return (true);
 }
